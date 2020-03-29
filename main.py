@@ -32,7 +32,7 @@ print(data)
 # ------------- end data gathering ---------------------- #
 
 
-# token = token.token
+# token = token
 
 # client = discord.Client()
 
