@@ -2,9 +2,13 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 import discord
+import os
 
-from details import token
-from details import idclient
+# from details import token
+
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
 # ------------- start data gathering ---------------------- #
 data = []
 
@@ -66,9 +70,9 @@ async def on_message(message):
     
     # join channel first
 
-    if message.content == "adhd":
-        await message.channel.send("-play corona adhd")
+    # if message.content == "adhd":
+    #     await message.channel.send("-play corona adhd")
 
 
 
-client.run(token)
+client.run(s3)
