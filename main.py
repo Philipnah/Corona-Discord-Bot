@@ -6,7 +6,7 @@ import os
 
 # from details import token
 
-token = int(os.environ.get("S3_KEY"))
+token = os.environ.get("S3_KEY")
 
 # ------------- start data gathering ---------------------- #
 data = []
