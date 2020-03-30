@@ -33,6 +33,11 @@ splicer()
 
 print(data)
 
+coronaUpdate = soup.find("div", {"class": "content-inner"})
+update = coronaUpdate.findAll("div")[1].getText()
+
+print(update)
+
 # ------------- end data gathering ---------------------- #
 
 client = discord.Client()
@@ -46,6 +51,7 @@ async def on_message(message):
         embed.add_field(name="Smittede", value=data[0] + "er infekterede.", inline=False)
         embed.add_field(name="Døde", value=data[1] + " er døde.", inline=False)
         embed.add_field(name="Raske", value=data[2] + " er raske igen.", inline=False)
+        embed.add_field(name="", value=update, inline=False)
         embed.add_field(name="Source", value=webpage, inline=False)
         await message.channel.send(embed=embed)
  
@@ -54,6 +60,7 @@ async def on_message(message):
         embed.add_field(name="Smittede", value=data[0] + "er infekterede.", inline=False)
         embed.add_field(name="Døde", value=data[1] + " er døde.", inline=False)
         embed.add_field(name="Raske", value=data[2] + " er raske igen.", inline=False)
+        embed.add_field(name="", value=update, inline=False)
         embed.add_field(name="Source", value=webpage, inline=False)
         await message.channel.send(embed=embed)
 
@@ -62,16 +69,9 @@ async def on_message(message):
         embed.add_field(name="Smittede", value=data[0] + "er infekterede.", inline=False)
         embed.add_field(name="Døde", value=data[1] + " er døde.", inline=False)
         embed.add_field(name="Raske", value=data[2] + " er raske igen.", inline=False)
+        embed.add_field(name="", value=update, inline=False)
         embed.add_field(name="Source", value=webpage, inline=False)
         await message.channel.send(embed=embed)
-
-
-    
-    # join channel first
-
-    # if message.content == "adhd":
-    #     await message.channel.send("-play corona adhd")
-
 
 
 client.run(token)
