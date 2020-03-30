@@ -2,8 +2,9 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 import discord
-#from token import token
 
+from details import token
+from details import idclient
 # ------------- start data gathering ---------------------- #
 data = []
 
@@ -31,20 +32,43 @@ print(data)
 
 # ------------- end data gathering ---------------------- #
 
+client = discord.Client()
 
-# token = token
+@client.event
+async def on_message(message):
 
-# client = discord.Client()
+    # id = client.get_guild(idclient)
+    if message.content == "-corona news":
+        embed = discord.Embed(title="Corona News", color=0x00ff00)
+        embed.add_field(name="Smittede", value=data[0] + "er infekterede.", inline=False)
+        embed.add_field(name="Døde", value=data[1] + " er døde.", inline=False)
+        embed.add_field(name="Raske", value=data[2] + " er raske igen.", inline=False)
+        embed.add_field(name="Source", value=webpage, inline=False)
+        await message.channel.send(embed=embed)
+ 
+    if message.content == "-covid19 news":
+        embed = discord.Embed(title="Corona News", color=0x00ff00)
+        embed.add_field(name="Smittede", value=data[0] + "er infekterede.", inline=False)
+        embed.add_field(name="Døde", value=data[1] + " er døde.", inline=False)
+        embed.add_field(name="Raske", value=data[2] + " er raske igen.", inline=False)
+        embed.add_field(name="Source", value=webpage, inline=False)
+        await message.channel.send(embed=embed)
 
-# @client.event
-# async def on_message(message):
-#     print(message.content)
-
-#     id = client.get_guild(idclient)
-
-#     if message.content == "/Members":
-#         await message.channel.send(f"""{id.member_count} Members""")
-
+    if message.content == "-sars cov2 news":
+        embed = discord.Embed(title="Corona News", color=0x00ff00)
+        embed.add_field(name="Smittede", value=data[0] + "er infekterede.", inline=False)
+        embed.add_field(name="Døde", value=data[1] + " er døde.", inline=False)
+        embed.add_field(name="Raske", value=data[2] + " er raske igen.", inline=False)
+        embed.add_field(name="Source", value=webpage, inline=False)
+        await message.channel.send(embed=embed)
 
 
-# client.run(token)
+    
+    # join channel first
+
+    if message.content == "adhd":
+        await message.channel.send("-play corona adhd")
+
+
+
+client.run(token)
