@@ -2,4 +2,3 @@ requests
 lxml
 bs4
 discord
-boto

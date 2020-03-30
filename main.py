@@ -6,8 +6,7 @@ import os
 
 # from details import token
 
-from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+token = int(os.environ.get("S3_KEY"))
 
 # ------------- start data gathering ---------------------- #
 data = []
@@ -75,4 +74,4 @@ async def on_message(message):
 
 
 
-client.run(s3)
+client.run(token)
