@@ -8,36 +8,44 @@ token = os.environ.get("S3_KEY")
 webpage = "https://www.worldometers.info/coronavirus/"
 
 # ------------- start data gathering ---------------------- #
-def DataGather():
-    data = []
+class dataGather:
 
-    datapage = requests.get(webpage)
+    def __init__():
+        print("Im instanced")
+        
+    def getDataDK():
+        pass
 
-    soup = BeautifulSoup(datapage.text, "lxml")
+    def DataGather():
+        data = []
 
-    coronaData = soup.find_all(class_="maincounter-number")
+        datapage = requests.get(webpage)
 
-    def splicer():
-        n = 0
-        while n <= 2:
-            coronaCases = str(coronaData[n]).split(">")
-            coronaCases = coronaCases[2].split("<")
-            coronaCases = coronaCases[0].replace(",", ".")
+        soup = BeautifulSoup(datapage.text, "lxml")
 
-            data.append(coronaCases)
-            n += 1
+        coronaData = soup.find_all(class_="maincounter-number")
+
+        def splicer():
+            n = 0
+            while n <= 2:
+                coronaCases = str(coronaData[n]).split(">")
+                coronaCases = coronaCases[2].split("<")
+                coronaCases = coronaCases[0].replace(",", ".")
+
+                data.append(coronaCases)
+                n += 1
 
 
-    splicer()
+        splicer()
 
-    print(data)
+        print(data)
 
-    coronaUpdate = soup.find("div", {"class": "content-inner"})
-    update = coronaUpdate.findAll("div")[1].getText()
-    data.append(update)
+        coronaUpdate = soup.find("div", {"class": "content-inner"})
+        update = coronaUpdate.findAll("div")[1].getText()
+        data.append(update)
 
-    print(update)
-    return data
+        print(update)
+        return data
 
 # ------------- end data gathering ---------------------- #
 
